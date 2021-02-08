@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="vmFolder"
+            type="com.kiljae.mygallery.viewmodel.GalleryFolderViewModel" />
+        <variable
+            name="data"
+            type="com.kiljae.mygallery.data.DataGalleryFolder" />
+        <import
+            alias="util"
+            type="com.kiljae.mygallery.common.Util"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{()-> vmFolder.onClickFolder(data)}">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivImage"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:background="@color/colorTomato"
+            android:scaleType="centerCrop"
+            loadStorageImage="@{data.url}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_round5_transgray"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivImage"
+            app:layout_constraintStart_toStartOf="parent">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFolderName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{data.name}"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/folder_text_small_size"
+                tool:text="FOLDER NAME"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFolderCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="@{util.intToBraketText(data.count)}"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/folder_text_small_size"
+                android:textStyle="bold"
+                tool:text="(128)"/>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
